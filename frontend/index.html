@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adaptive Mule Intelligence Network</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">AI/ML fraud operations</p>
+        <h1>Adaptive Mule Intelligence Network</h1>
+      </div>
+      <div class="header-actions">
+        <span class="live-pill"><i></i>LIVE</span>
+        <a class="text-button" href="selfcheck.html">
+          <span data-icon="shield"></span>
+          Satark AI
+        </a>
+        <button id="pauseStream" class="icon-button" title="Pause stream" aria-label="Pause stream">
+          <span data-icon="pause"></span>
+        </button>
+        <button id="seedIncident" class="primary-button">
+          <span data-icon="zap"></span>
+          Inject cyber alert
+        </button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section class="metrics-strip" aria-label="Risk metrics">
+        <article class="risk-card safe">
+          <span>Live events</span>
+          <strong id="metricEvents">0</strong>
+        </article>
+        <article class="risk-card review">
+          <span>High-risk accounts</span>
+          <strong id="metricAccounts">0</strong>
+        </article>
+        <article class="risk-card freeze">
+          <span>Funds held</span>
+          <strong id="metricHeld">INR 0</strong>
+        </article>
+        <article class="risk-card freeze">
+          <span>Regulatory hits</span>
+          <strong id="metricRegHits">0</strong>
+        </article>
+        <article class="risk-card prevented">
+          <span>Fraud prevented</span>
+          <strong id="metricPrevented">INR 0</strong>
+        </article>
+      </section>
+
+      <section class="adaptive-ticker" aria-live="polite">
+        <div class="pulse-dot"></div>
+        <div>
+          <p class="eyebrow">Adaptive learning event</p>
+          <strong id="learningTitle">Waiting for regulatory or investigator feedback</strong>
+          <span id="learningDetail">The model will update when a cyber alert or feedback signal arrives.</span>
+        </div>
+      </section>
+
+      <section class="operations-grid">
+        <div class="panel ingest-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Backend API</p>
+              <h2>Manual transaction ingest</h2>
+            </div>
+          </div>
+          <form id="ingestForm" class="ingest-form">
+            <label>
+              Account
+              <input name="account" value="AC88420" required />
+            </label>
+            <label>
+              Beneficiary
+              <input name="beneficiary" value="AC44771" required />
+            </label>
+            <label>
+              Amount
+              <input name="amount" type="number" min="1" value="125000" required />
+            </label>
+            <label>
+              Channel
+              <select name="channel">
+                <option>UPI</option>
+                <option>IMPS</option>
+                <option>NEFT</option>
+                <option>RTGS</option>
+                <option>CARD</option>
+                <option>WALLET</option>
+              </select>
+            </label>
+            <label>
+              Device
+              <input name="device" value="DEV-71A" required />
+            </label>
+            <label>
+              Phone
+              <input name="phone" value="+91-98XXXX2310" required />
+            </label>
+            <label>
+              Location
+              <input name="location" value="Mumbai" required />
+            </label>
+            <label>
+              Govt/Cyber case
+              <input name="caseId" value="NCRP-26-11820" />
+            </label>
+            <button class="primary-button" type="submit">
+              <span data-icon="database"></span>
+              Submit to risk API
+            </button>
+          </form>
+        </div>
+
+        <div class="panel stream-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Real-time ingestion</p>
+              <h2>Cross-channel transactions <small id="feedPulse">ingesting now</small></h2>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Event filters">
+              <button class="active" data-filter="all">All</button>
+              <button data-filter="high">High</button>
+              <button data-filter="held">Held</button>
+            </div>
+          </div>
+          <div id="transactionList" class="transaction-list" aria-live="polite"></div>
+        </div>
+
+        <div class="panel risk-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Decision engine</p>
+              <h2>Current risk decision</h2>
+            </div>
+            <span id="decisionBadge" class="status-badge neutral">Monitoring</span>
+          </div>
+          <div id="decisionDetail" class="decision-detail"></div>
+          <div class="reason-box">
+            <h3>AI reason codes</h3>
+            <ul id="reasonCodes"></ul>
+          </div>
+          <div class="reason-box">
+            <h3>ML model breakdown</h3>
+            <div id="modelBreakdown" class="model-breakdown"></div>
+          </div>
+          <div class="feedback-actions">
+            <button id="confirmMule" class="text-button">
+              <span data-icon="check"></span>
+              Confirm mule
+            </button>
+            <button id="falsePositive" class="text-button">False positive</button>
+          </div>
+          <div id="feedbackStatus" class="feedback-status" aria-live="polite">No feedback submitted for the current decision.</div>
+        </div>
+
+        <div class="panel graph-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Network intelligence</p>
+              <h2>Mule cluster graph</h2>
+            </div>
+            <span id="clusterCount" class="status-badge">0 links</span>
+          </div>
+          <canvas id="networkCanvas" width="720" height="430" aria-label="Mule account graph"></canvas>
+          <div id="graphTooltip" class="graph-tooltip" hidden></div>
+          <div id="graphInspector" class="graph-inspector">
+            <p class="eyebrow">Node investigation</p>
+            <strong>Select a node to inspect mule-network context</strong>
+            <span>Linked accounts, suspicious transfers, risk reasons, location mismatch, and fraud chain depth will appear here.</span>
+          </div>
+        </div>
+
+        <div class="panel queue-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Investigator workflow</p>
+              <h2>Prioritized alert queue</h2>
+            </div>
+            <button id="resolveTop" class="text-button">
+              <span data-icon="check"></span>
+              Resolve top
+            </button>
+          </div>
+          <div id="alertQueue" class="alert-queue"></div>
+        </div>
+      </section>
+
+      <section class="panel architecture-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Solution architecture</p>
+            <h2>Detection and containment pipeline</h2>
+          </div>
+        </div>
+          <div class="pipeline">
+          <div><span data-icon="database"></span><strong>Ingest</strong><small>Bank, TMS, fraud, cyber and Satark AI signals</small></div>
+          <div><span data-icon="link"></span><strong>Resolve</strong><small>Accounts, devices, phones and identity hashes</small></div>
+          <div><span data-icon="activity"></span><strong>Score</strong><small>ML, graph risk, rules and velocity</small></div>
+          <div><span data-icon="shield"></span><strong>Protect</strong><small>Hold, freeze, dispute, step-up, escalate</small></div>
+          <div><span data-icon="refresh"></span><strong>Learn</strong><small>Investigator feedback loop</small></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
